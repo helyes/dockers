@@ -4,9 +4,10 @@
 docker build - < Dockerfile
 ```
 
+
 **Tag image**
 
-Version schema: <dockerfile version>-<python version>-<aws-cli version>
+Version schema: {dockerfile version}-{python version>}-{aws-cli version}
 
 ```
 docker tag 31b391b1e65f helyesa/aws-cli:0.0.6-3.6.8-1.16.160
@@ -28,7 +29,7 @@ docker start aws-cli
 docker exec -it aws-cli  /bin/sh
 ```
 
-## Using it along with localstack
+## Using it with localstack
 
 **Example compose file**
 
@@ -65,7 +66,7 @@ services:
       "
         sleep 10;
         # dev sqs queue
-        aws sqs create-queue --endpoint-url=http://localstack:4576 --queue-name service-invoice-generateinvoice-request-dev --attributes file:///app/setup/sqs/sqs-service-invoice-generateinvoice-request-config.json
+        aws sqs create-queue --endpoint-url=http://localstack:4576 --queue-name my_queue --attributes file:///app/setup/my-queue-config.json
         echo 'AWS admin: http://localhost:8055'
       "
     networks:
@@ -76,3 +77,6 @@ services:
 networks:
   localstack_network:
 ```
+
+In the example above, project `setup` folder is mapped to /app/setup in the container. Therefore project files can be accessed as `file:///app/setup/my-queue-config.json`.
+
