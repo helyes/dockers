@@ -1,0 +1,11 @@
+# env files
+.env*
+
+# Logs
+logs
+*.log
+
+# Coverage directories used by tools like istanbul
+coverage
+reports/
+
